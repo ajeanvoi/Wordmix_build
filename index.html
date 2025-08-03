@@ -3,24 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
-  <title>Unity Web Player | Wordmix</title>
+  <title>Wordmix | Web Demo</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #000;
+      background: linear-gradient(to bottom, #1e1e1e, #333);
+      color: white;
+      font-family: 'Rubik', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      margin: 20px 0 10px 0;
+      font-size: 2em;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     #unity-container {
       width: 100vmin;
       height: calc(100vmin * (16 / 9));
-      max-height: 100vh;
+      max-height: 80vh;
       max-width: calc(100vh * (9 / 16));
-      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     #unity-canvas {
@@ -29,11 +44,43 @@
       background: #231F20;
       display: block;
     }
+
+    .store-button {
+      margin-top: 20px;
+    }
+
+    .store-button img {
+      height: 60px;
+      transition: transform 0.2s ease;
+    }
+
+    .store-button img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-height: 600px) {
+      h1 {
+        display: none;
+      }
+
+      .store-button img {
+        height: 40px;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <h1>Wordmix</h1>
+
   <div id="unity-container">
     <canvas id="unity-canvas" tabindex="-1"></canvas>
+  </div>
+
+  <div class="store-button">
+    <a href="https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+    </a>
   </div>
 
   <script src="Build/Wordmix_build.loader.js"></script>
