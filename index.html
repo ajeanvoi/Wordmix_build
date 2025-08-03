@@ -12,40 +12,67 @@
       height: 100%;
       width: 100%;
       background: #1e1e1e;
+      font-family: sans-serif;
+      color: #eee;
+      overflow: hidden;
+    }
+
+    .layout {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      height: 100%;
+      width: 100%;
     }
 
-    /* Google Play logo container */
-    .store-sidebar {
+    .store-sidebar,
+    .info-panel {
+      flex-shrink: 0;
+      width: 150px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-right: 20px;
-      height: 100%;
+      text-align: center;
     }
 
-    .store-sidebar img {
-      height: 80px;
+    .store-sidebar img.google-play {
+      height: 60px;
+      margin-bottom: 10px;
       transition: transform 0.2s ease;
     }
 
-    .store-sidebar img:hover {
+    .store-sidebar img.google-play:hover {
       transform: scale(1.05);
     }
 
-    /* Unity game container with 9:16 ratio */
+    .store-sidebar img.qr {
+      height: 80px;
+      margin-top: 5px;
+      border-radius: 4px;
+    }
+
+    .store-sidebar .description {
+      font-size: 13px;
+      color: #ccc;
+      margin: 10px 0;
+    }
+
+    .store-sidebar .socials img {
+      width: 22px;
+      margin: 0 5px;
+      opacity: 0.8;
+    }
+
     #unity-container {
       width: calc(100vh * 9 / 16);
       height: 100vh;
-      max-width: 56.25vw;
       background: #231F20;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
       border-radius: 12px;
       overflow: hidden;
+      display: flex;
     }
 
     #unity-canvas {
@@ -54,17 +81,32 @@
       display: block;
     }
 
+    .info-panel {
+      font-size: 13px;
+      color: #bbb;
+    }
+
+    .info-panel .section {
+      margin-bottom: 20px;
+    }
+
+    .info-panel .section strong {
+      color: #fff;
+    }
+
     @media (max-width: 800px) {
-      body {
+      .layout {
         flex-direction: column;
       }
 
-      .store-sidebar {
+      .store-sidebar,
+      .info-panel {
+        flex-direction: row;
+        width: auto;
         margin: 10px 0;
-        height: auto;
       }
 
-      .store-sidebar img {
+      .store-sidebar img.qr {
         height: 60px;
       }
 
@@ -78,16 +120,39 @@
 </head>
 
 <body>
-  <div class="store-sidebar">
-    <a href="https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix" target="_blank" rel="noopener">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-    </a>
+  <div class="layout">
+    <!-- Colonne gauche -->
+    <div class="store-sidebar">
+      <a href="https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+             alt="Get it on Google Play" class="google-play">
+      </a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix"
+           alt="QR Code Play Store" class="qr">
+      <div class="description">
+        Testez <strong>Wordmix</strong>, un jeu de lettres rapide et addictif !
+      </div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/achille-jeanvoine/" target="_blank" rel="noopener">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+      </div>
+    </div>
+
+    <!-- Jeu -->
+    <div id="unity-container">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+    </div>
+
+    <!-- Colonne droite -->
+    <div class="info-panel">
+      <div class="section">
+        🏆 Meilleur score : <strong>Plus de 40 niveaux de réalisés</strong>
+      </div>
+    </div>
   </div>
 
-  <div id="unity-container">
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
-  </div>
-
+  <!-- Unity -->
   <script src="Build/Wordmix_build.loader.js"></script>
   <script>
     createUnityInstance(document.querySelector("#unity-canvas"), {
