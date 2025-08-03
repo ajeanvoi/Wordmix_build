@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
   <title>Wordmix | Web Demo</title>
 
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
-      background: #1e1e1e;
-      font-family: sans-serif;
-      color: #eee;
+      background: linear-gradient(135deg, #0a1e3a 0%, #1e4b4d 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: #a3d0ff;
       overflow: hidden;
     }
+
 
     .layout {
       display: flex;
@@ -24,22 +28,26 @@
       align-items: center;
       height: 100%;
       width: 100%;
+      gap: 60px;
+      /* espace entre les colonnes et le jeu */
     }
 
     .store-sidebar,
     .info-panel {
       flex-shrink: 0;
-      width: 150px;
+      width: 190px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .store-sidebar img.google-play {
-      height: 60px;
-      margin-bottom: 10px;
+      height: 70px;
+      margin-bottom: 15px;
       transition: transform 0.2s ease;
     }
 
@@ -48,28 +56,35 @@
     }
 
     .store-sidebar img.qr {
-      height: 80px;
-      margin-top: 5px;
-      border-radius: 4px;
+      height: 120px;
+      margin-top: 12px;
+      border-radius: 6px;
+      background: white;
+      padding: 4px;
     }
 
     .store-sidebar .description {
-      font-size: 13px;
-      color: #ccc;
-      margin: 10px 0;
+      font-size: 14px;
+      color: #a3d0ff;
+      margin: 15px 0;
     }
 
     .store-sidebar .socials img {
-      width: 22px;
-      margin: 0 5px;
-      opacity: 0.8;
+      width: 28px;
+      margin: 0 8px;
+      opacity: 0.85;
+      transition: transform 0.2s ease;
+    }
+
+    .store-sidebar .socials img:hover {
+      transform: scale(1.1);
     }
 
     #unity-container {
       width: calc(100vh * 9 / 16);
       height: 100vh;
       background: #231F20;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
       border-radius: 12px;
       overflow: hidden;
       display: flex;
@@ -82,8 +97,8 @@
     }
 
     .info-panel {
-      font-size: 13px;
-      color: #bbb;
+      font-size: 14px;
+      color: #a3d0ff;
     }
 
     .info-panel .section {
@@ -91,12 +106,13 @@
     }
 
     .info-panel .section strong {
-      color: #fff;
+      color: #ffffff;
     }
 
     @media (max-width: 800px) {
       .layout {
         flex-direction: column;
+        gap: 20px;
       }
 
       .store-sidebar,
@@ -104,16 +120,22 @@
         flex-direction: row;
         width: auto;
         margin: 10px 0;
+        padding: 10px;
       }
 
       .store-sidebar img.qr {
-        height: 60px;
+        height: 90px;
+      }
+
+      .store-sidebar img.google-play {
+        height: 50px;
       }
 
       #unity-container {
         width: 100vw;
         height: calc(100vw * 16 / 9);
         max-height: 100vh;
+        margin: 10px 0;
       }
     }
   </style>
@@ -125,10 +147,11 @@
     <div class="store-sidebar">
       <a href="https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix" target="_blank" rel="noopener">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-             alt="Get it on Google Play" class="google-play">
+          alt="Get it on Google Play" class="google-play">
       </a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix"
-           alt="QR Code Play Store" class="qr">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://play.google.com/store/apps/details?id=com.AkazGame.Wordmix"
+        alt="QR Code Play Store" class="qr">
       <div class="description">
         Testez <strong>Wordmix</strong>, un jeu de lettres rapide et addictif !
       </div>
@@ -167,4 +190,5 @@
     });
   </script>
 </body>
+
 </html>
